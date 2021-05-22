@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+import Layout from './components/Layout';
+import Shopping from './components/Drawer';
 import './App.css';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import {grey, pink, purple} from '@material-ui/core/colors';
 
 function App() {
+  const theme = createMuiTheme({
+    palette:{
+      primary:{
+        main: '#ffb74d',
+        contrastText: '#fff'
+      },
+      secondary: purple,
+      action:{
+        active:'#ffb74d'
+      },
+      
+    },
+    typography:{
+      fontFamily: 'Quicksand',
+      fontWeightLight: 400,
+      fontWeightRegular: 500,
+      fontWeightMedium: 600,
+      fontWeightBold: 700,
+    },
+  })
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ThemeProvider theme={theme}>
+      <Layout>
+        <Shopping />
+      </Layout>
+      </ThemeProvider>
     </div>
   );
 }
