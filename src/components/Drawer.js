@@ -17,7 +17,7 @@ const drawerWidth= 240;
 const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
-    flexShrink: 0,
+    flexShrink: 5,
   },
   drawerPaper: {
     width: drawerWidth,
@@ -30,12 +30,52 @@ export default function Shopping(){
 
   const classes = useStyles();
   const [open, setOpen] = useState(true);
+  const [listItems, setListItems] = useState(['Inbox', 'Starred', 'Send Mail', 'Drafts'])
 
   const handleClick=()=>{
+    console.log('the button is clicked ')
     setOpen(!open)
   }
     
     return(
+      // <div>Something is going to happen</div>
+      // <div>
+      //   <Drawer
+      //   className={classes.drawer}
+      //   variant="permanent"
+      //   anchor="left"
+      //   >
+      //     <div className={classes.toolbar}/>
+      //     <List>
+      //       {
+      //         listItems.map((item, index) => {
+      //           return (
+      //             <ListItem
+      //               key={index}
+      //               button
+      //               onClick={handleClick}
+      //             >
+      //               <ListItemIcon >{index == 2 ? <InboxIcon  /> : <MailIcon />}</ListItemIcon>
+      //               <ListItemText primary={item}/>
+      //               <NavigateNextIcon fontSize="small"/>
+      //             </ListItem>
+      //           )
+      //         })
+      //       }
+      //       <Collapse in={open} timeout="auto" unmountOnExit>
+      //   <List component="div" disablePadding>
+      //     <ListItem button className={classes.nested}>
+      //       <ListItemIcon>
+      //         <StarBorder />
+      //       </ListItemIcon>
+      //       <ListItemText primary="Starred" />
+      //     </ListItem>
+      //   </List>
+      // </Collapse>
+      //     </List>
+
+      //   </Drawer>
+      // </div>
         <div>
        
        <Drawer
@@ -46,12 +86,16 @@ export default function Shopping(){
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Inbox', 'Starred', 'Send email', 'Drafts', 'what the hell'].map((text, index) => (
+            <div>
             <ListItem button onClick={handleClick}  key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
               <NavigateNextIcon fontSize="small" />
             </ListItem>
+            <Divider />
+            </div>
+            
           ))}
         </List>
         <ListItem button onClick={handleClick}>

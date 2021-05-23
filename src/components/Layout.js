@@ -58,7 +58,7 @@ export default function Layout({children}){
             </Toolbar>
         </AppBar>
        
-       <Drawer />
+       
         <div>
             {children}
         </div>

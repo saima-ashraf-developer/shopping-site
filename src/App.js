@@ -1,5 +1,6 @@
 import Layout from './components/Layout';
-import Shopping from './components/Drawer';
+import Drawer from './components/Drawer';
+import Searchbar from './components/Searchbar';
 import './App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import {grey, pink, purple} from '@material-ui/core/colors';
@@ -29,7 +30,8 @@ function App() {
     <div>
       <ThemeProvider theme={theme}>
       <Layout>
-        <Shopping />
+        <Drawer />
+        <Searchbar />
       </Layout>
       </ThemeProvider>
     </div>
