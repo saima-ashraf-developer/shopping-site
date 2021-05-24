@@ -12,7 +12,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import PhoneIphoneOutlinedIcon from '@material-ui/icons/PhoneIphoneOutlined';
 
 
-const drawerWidth= 240;
+const drawerWidth= 260;
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
