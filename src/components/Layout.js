@@ -1,9 +1,10 @@
 import { Typography, AppBar, Toolbar, Avatar, makeStyles, Fab } from '@material-ui/core';
 import React from 'react';
+import Drawer from './Drawer';
+import Searchbar from './Searchbar';
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AddIcon from '@material-ui/icons/Add';
-import Drawer from './Drawer';
 
 
 const useStyles=makeStyles((theme)=>{
@@ -25,14 +26,14 @@ const useStyles=makeStyles((theme)=>{
         marginLeft: theme.spacing(5)
     },
     flex:{
-        marginLeft: theme.spacing(70),
+        marginLeft: theme.spacing(45),
         marginRight: theme.spacing(5),
         marginTop: theme.spacing(2)
     }
 }
 })
 
-export default function Layout({children}){
+export default function Layout(){
     const classes= useStyles()
     return(
         <div>
@@ -60,7 +61,8 @@ export default function Layout({children}){
        
        
         <div>
-            {children}
+        <Drawer />
+           <Searchbar />
         </div>
         </div>
     )

@@ -1,9 +1,13 @@
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Pricing from './components/Pricing';
 import Layout from './components/Layout';
 import Drawer from './components/Drawer';
 import Searchbar from './components/Searchbar';
 import './App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import {grey, pink, purple} from '@material-ui/core/colors';
+
 
 function App() {
   const theme = createMuiTheme({
@@ -26,14 +30,19 @@ function App() {
       fontWeightBold: 700,
     },
   })
+  
   return (
     <div>
       <ThemeProvider theme={theme}>
-      <Layout>
-        <Drawer />
-        <Searchbar />
-      </Layout>
+        <Router>
+           <Switch>
+             <Route exact path='/' component={Layout} />
+          <Route path='/pricing-page' component={Pricing}/>
+        </Switch>
+       
+      </Router>
       </ThemeProvider>
+     
     </div>
   );
 }
