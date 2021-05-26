@@ -29,6 +29,9 @@ const useStyles=makeStyles((theme)=>{
         marginLeft: theme.spacing(45),
         marginRight: theme.spacing(5),
         marginTop: theme.spacing(2)
+    },
+    appbar:{
+        zIndex: theme.zIndex.drawer + 1
     }
 }
 })
@@ -37,7 +40,7 @@ export default function Layout(){
     const classes= useStyles()
     return(
         <div>
-        <AppBar>
+        <AppBar className={classes.appbar}>
             <Toolbar>
                 <Typography variant='h6'>Select Catagory</Typography>
                 <AssignmentOutlinedIcon fontSize="large"/> 

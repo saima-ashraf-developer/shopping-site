@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 5,
+   
   },
   drawerPaper: {
     width: drawerWidth,
@@ -38,44 +39,7 @@ export default function Shopping(){
   }
     
     return(
-      // <div>Something is going to happen</div>
-      // <div>
-      //   <Drawer
-      //   className={classes.drawer}
-      //   variant="permanent"
-      //   anchor="left"
-      //   >
-      //     <div className={classes.toolbar}/>
-      //     <List>
-      //       {
-      //         listItems.map((item, index) => {
-      //           return (
-      //             <ListItem
-      //               key={index}
-      //               button
-      //               onClick={handleClick}
-      //             >
-      //               <ListItemIcon >{index == 2 ? <InboxIcon  /> : <MailIcon />}</ListItemIcon>
-      //               <ListItemText primary={item}/>
-      //               <NavigateNextIcon fontSize="small"/>
-      //             </ListItem>
-      //           )
-      //         })
-      //       }
-      //       <Collapse in={open} timeout="auto" unmountOnExit>
-      //   <List component="div" disablePadding>
-      //     <ListItem button className={classes.nested}>
-      //       <ListItemIcon>
-      //         <StarBorder />
-      //       </ListItemIcon>
-      //       <ListItemText primary="Starred" />
-      //     </ListItem>
-      //   </List>
-      // </Collapse>
-      //     </List>
-
-      //   </Drawer>
-      // </div>
+      
         <div>
        
        <Drawer

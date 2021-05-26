@@ -2,11 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Pricing from './components/Pricing';
 import Layout from './components/Layout';
-import Drawer from './components/Drawer';
-import Searchbar from './components/Searchbar';
 import './App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import {grey, pink, purple} from '@material-ui/core/colors';
+import Loginpage from './components/Loginpage';
 
 
 function App() {
@@ -38,6 +37,7 @@ function App() {
            <Switch>
              <Route exact path='/' component={Layout} />
           <Route path='/pricing-page' component={Pricing}/>
+          <Route path='/login-page' component={Loginpage} />
         </Switch>
        
       </Router>

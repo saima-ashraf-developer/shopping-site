@@ -15,14 +15,14 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import { purple } from '@material-ui/core/colors';
+import {useHistory, useLocation } from 'react-router-dom';
 
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://github.com/saima-ashraf-developer/">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
   cardHeader: {
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[700],
+      marginBottom: 50
   },
   cardPricing: {
     display: 'flex',
@@ -79,40 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const items = [
-  {
-    title: 'Free',
-    price: '0',
-    description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
-    buttonText: 'Sign up for free',
-    buttonVariant: 'outlined',
-  },
-  {
-    title: 'Pro',
-    subheader: 'Most popular',
-    price: '15',
-    description: [
-      '20 users included',
-      '10 GB of storage',
-      'Help center access',
-      'Priority email support',
-    ],
-    buttonText: 'Get started',
-    buttonVariant: 'outlined',
-  },
-  {
-    title: 'Enterprise',
-    price: '30',
-    description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
-    ],
-    buttonText: 'Contact us',
-    buttonVariant: 'outlined',
-  },
-];
+
 const footers = [
   {
     title: 'Company',
@@ -134,11 +102,83 @@ const footers = [
 
 export default function Pricing() {
   const classes = useStyles();
-  const [action, setAction] = useState(false);
 
-    const clickHandler=(key)=>{
-      setAction(true);
+
+  const [items, setItems] = useState([
+    {
+      title: 'Delivery Free',
+  
+      description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
+      buttonText: 'Sign up for free',
+      buttonVariant: 'outlined',
+      action:false
+    },
+    {
+      title: 'Upcomings',
+      subheader: 'Most popular',
+     
+      description: [
+        '20 users included',
+        '10 GB of storage',
+        'Help center access',
+        'Priority email support',
+      ],
+      buttonText: 'Get started',
+      buttonVariant: 'outlined',
+      action:false
+    },
+    {
+      title: 'For Booking',
+      description: [
+        '50 users included',
+        '30 GB of storage',
+        'Help center access',
+        'Phone & email support',
+      ],
+      buttonText: 'Contact us',
+      buttonVariant: 'outlined',
+      action:false
+    },
+  ]);
+
+
+
+
+  const [actions, setAction] = useState([
+    {
+      index: 0,
+      action:false
+    },
+    {
+      index: 1,
+      action:false
+    },
+    {
+      index: 2,
+      action:false
     }
+  ]);
+  const history = useHistory();
+  const location = useLocation();
+
+    const clickHandler=(key, index)=>{
+
+      if(items.title == key){
+        const s = items[index].action
+        setItems(items[index].action == true)
+      }
+     
+  
+    }
+
+
+    const loginHandler=()=>{
+     
+      history.push('/login-page')
+      // <Link to={location => ({ ...location, pathname: "/login-page" })} />
+    }
+
+    console.log(actions)
 
   return (
     <React.Fragment>
@@ -159,7 +199,7 @@ export default function Pricing() {
               Support
             </Link>
           </nav>
-          <Button href="#" color="inherit" variant="outlined" className={classes.link}>
+          <Button href="#" color="inherit" variant="outlined" className={classes.link} onClick={loginHandler}>
             Login
           </Button>
         </Toolbar>
@@ -167,34 +207,32 @@ export default function Pricing() {
       {/* Hero unit */}
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom id="transition-modal-title">
-          Pricing
+          Price Of Products 
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" component="p" id="transition-modal-description">
-          Quickly build an effective pricing table for your potential customers with this layout.
-          It&apos;s built with default Material-UI components with little customization.
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
         </Typography>
       </Container>
       {/* End hero unit */}
       <Container maxWidth="md" component="main">
         <Grid container spacing={5} alignItems="flex-end">
-          {items.map((item) => (
-            <Grid item key={item.title} xs={12}  md={4} onClick={()=>clickHandler(item.title)} >
+          {items.map((item, index) => {
+            console.log(item)
+
+            
+            return (
+            <Grid item key={item.title} xs={12}  md={4}  onClick={()=>clickHandler(item.title, index)}>
               <Card  >
                 <CardHeader
-                
                   title={item.title}
                   subheader={item.subheader}
                   titleTypographyProps={{ align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
-                  action={action ? <StarIcon /> : null}
+                  action={item.action ? <StarIcon /> : ''}
                   className={classes.cardHeader}
                 />
                 <CardContent>
-                  <div className={classes.cardPricing}>
-                    <Typography component="h2" variant="h3" color="textPrimary">
-                      ${item.price}
-                    </Typography>
-                  </div>
+                 
                   <ul>
                     {item.description.map((line) => (
                       <Typography component="li" variant="subtitle1" align="center" key={line}>
@@ -203,14 +241,14 @@ export default function Pricing() {
                     ))}
                   </ul>
                 </CardContent>
-                <CardActions>
-                  <Button fullWidth variant={item.buttonVariant} color="primary">
+                <CardActions >
+                  <Button fullWidth variant={item.buttonVariant} color="primary" >
                     {item.buttonText}
                   </Button>``
                 </CardActions>
               </Card>
             </Grid>
-          ))}
+          )})}
         </Grid>
       </Container>
       {/* Footer */}
