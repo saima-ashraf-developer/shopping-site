@@ -21,7 +21,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import tileData from './tileData';
+import {connect} from 'react-redux';
 
 
 function Copyright() {
@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: theme.spacing(6),
     },
   },
-  root: {
+  root1: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -126,14 +126,11 @@ const footers = [
   },
 ];
 
-export default function Pricing() {
+const Pricing=(props)=> {
   const classes = useStyles();
-
-
   const [items, setItems] = useState([
     {
       title: 'Delivery Free',
-  
       description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
       buttonText: 'Sign up for free',
       buttonVariant: 'outlined',
@@ -142,7 +139,6 @@ export default function Pricing() {
     {
       title: 'Upcomings',
       subheader: 'Most popular',
-     
       description: [
         '20 users included',
         '10 GB of storage',
@@ -187,24 +183,16 @@ export default function Pricing() {
   const history = useHistory();
   const location = useLocation();
 
-    const clickHandler=(key, index)=>{
+  const clickHandler=(key, index)=>{
 
       if(items.title == key){
         const s = items[index].action
         setItems(items[index].action == true)
       }
-     
-  
     }
-
-
-    const loginHandler=()=>{
-     
+  const loginHandler=()=>{  
       history.push('/login-page')
-      // <Link to={location => ({ ...location, pathname: "/login-page" })} />
     }
-
-    console.log(actions)
 
   return (
     <React.Fragment>
@@ -235,16 +223,16 @@ export default function Pricing() {
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom id="transition-modal-title">
           Price Of Products 
         </Typography>
-        <div className={classes.root}>
+        <div className={classes.root1}>
       <GridList cellHeight={200} spacing={1} className={classes.gridList}>
-        {tileData.map((tile) => (
-          <GridListTile key={tile.img} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1}>
-            <img src={tile.img} alt={tile.title} />
+        {props.tileData.map((tile) => (
+          <GridListTile key={tile.imgPath} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1}>
+            <img src={tile.imgPath} alt={tile.label} />
             <GridListTileBar
-              title={tile.title}
+              title={tile.label}
               titlePosition="top"
               actionIcon={
-                <IconButton aria-label={`star ${tile.title}`} className={classes.icon}>
+                <IconButton aria-label={`star ${tile.label}`} className={classes.icon}>
                   <StarBorderIcon />
                 </IconButton>
               }
@@ -322,4 +310,11 @@ export default function Pricing() {
     </React.Fragment>
   );
 }
+const mapStateToProps = (state) => {
+ 
+  return {
+    tileData: state
+  }
+}
 
+export default connect(mapStateToProps)(Pricing);
