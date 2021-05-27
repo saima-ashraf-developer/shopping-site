@@ -50,7 +50,7 @@ export default function Shopping(){
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts', 'what the hell'].map((text, index) => (
+          {listItems.map((text, index) => (
             <div>
             <ListItem button onClick={handleClick}  key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>

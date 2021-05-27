@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './Card';
-import {InputBase, Container, List, Avatar, Typography, ButtonGroup,Button, Input} from '@material-ui/core';
+import Steppers from './Stepper';
+import {InputBase, Container, List, Avatar, Typography, ButtonGroup,Button, Input, Stepper} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles , fade} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -101,10 +102,7 @@ export default function SearchBar(){
               </IconButton>
              </Paper>
               <div style={{marginTop: '2rem'}}>
-                <img
-                    className={classes.image}
-                    src='https://c.ndtvimg.com/2020-10/bc5nbv6o_breakfast_650x400_01_October_20.jpg'
-                />
+               <Steppers />
                 </div>
            </Grid>
         <Grid item xs={6}>
