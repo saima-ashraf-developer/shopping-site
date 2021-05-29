@@ -6,14 +6,18 @@ import './App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import {grey, pink, purple} from '@material-ui/core/colors';
 import Loginpage from './components/Loginpage';
+import Password from './components/Password';
+import Signuppage from './components/Signuppage';
 
 
 function App() {
   const theme = createMuiTheme({
     palette:{
-      primary:{
-        main: '#ffb74d',
-        contrastText: '#fff'
+      primary:{ 
+        light: '#ffecb3',
+        main: '#ffc107',
+        dark: '#ffb300',
+        contrastText: '#fff',
       },
       secondary: purple,
       action:{
@@ -38,6 +42,9 @@ function App() {
              <Route exact path='/' component={Layout} />
           <Route path='/pricing-page' component={Pricing}/>
           <Route path='/login-page' component={Loginpage} />
+          <Route path='/forgot-password' component={Password} />
+          <Route path='/sign-up-page' component={Signuppage} />
+          
         </Switch>
        
       </Router>

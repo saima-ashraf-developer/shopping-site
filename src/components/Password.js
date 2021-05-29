@@ -14,10 +14,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import {useHistory } from 'react-router-dom';
+import { Backdrop, CardActions, CardContent } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="primary" align="center">
+    <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://github.com/saima-ashraf-developer/">
         Your Website
@@ -36,36 +39,43 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    margin: theme.spacing(2),
+    backgroundColor: theme.palette.primary.main,
+    marginLeft: theme.spacing(35),
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+    
   },
-  form: {
+  card: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  flexGrow:1
   },
 }));
 
 export default function Loginpage() {
   const classes = useStyles();
-  const [error, setError] = useState(false);
+  const [open, setOpen] = useState(true)
+  const [error, setError] = useState(null);
   const history= useHistory();
   const [state, setState]= useState({
     email: '',
-    password: ''
+    password: '',
+    confirmpassword: ''
   });
  
 
   const submitHandler=(e)=>{
     console.log(state.email, state.password)
     e.preventDefault();
-        if(state.password.length) {
-            sendDetailsToServer()    
-        } else {
-            setError('Passwords do not match');
-        }
+        // if(state.password === state.confirmpassword) {
+        //  history.goBack()
+        // } else {
+        //     setError('Passwords do not match');
+        // }
   }
   const changeHandler=(e)=>{
     const {id, value} = e.target
@@ -75,45 +85,23 @@ export default function Loginpage() {
 
     }))
   }
-  const sendDetailsToServer = () => {
-    if(state.email.length && state.password.length) {
-        setError(null);
-        const payload={
-            "email":state.email,
-            "password":state.password,
-        }
-        axios.post('https://signinpage-c5629-default-rtdb.firebaseio.com/users', payload)
-            .then(function (response) {
-                if(response.status === 200){
-                    setState(prevState => ({
-                        ...prevState,
-                        'successMessage' : 'Registration successful. Redirecting to home page..'
-                    }))
-                    history.goBack();
-                    setError(null)
-                } else{
-                    setError("Some error ocurred");
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });    
-    } else {
-        setError('Please enter valid username and password')    
-    }
+  const clickhandle=()=>{
+    setOpen(false)
   }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
+    <Container component="main" >
+  
       <div className={classes.paper}>
+          <Card>
+          <CardActionArea onClick={clickhandle}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
+        <CardContent>
+        <Typography component="h1" variant="h5" color='primary'>
+          Password Resetting
         </Typography>
-        <form className={classes.form} onSubmit={submitHandler} error={error}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -126,50 +114,60 @@ export default function Loginpage() {
             autoFocus
             value={state.email}
             onChange={changeHandler}
+            error={error}
           />
-               <small id="emailHelp">We'll never share your email with anyone else.</small>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="password"
-            label="Password"
+            name="newpassword"
+            label="New Password"
             type="password"
-            id="password"
+            id="newpassword"
             autoComplete="current-password"
             value={state.password}
             onChange={changeHandler}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+           <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="confirmpassword"
+            label="Confirm Password"
+            type="password"
+            id="confirmpassword"
+            autoComplete="current-password"
+            value={state.confirmpassword}
+            onChange={changeHandler}
           />
+        
+         </CardContent>
+          <CardActions>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            fullWidth
           >
-            Sign In
+          Reset Password
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Button onClick={()=>{  
-                history.push('/forgot-password')
-              }} variant="body2">
-                Forgot password?
-              </Button>
-            </Grid>
             <Grid item>
-              <Button onClick={()=>{history.push('/sign-up-page')}}>
-                {"Don't have an account? Sign Up"}
-              </Button>
+            <small>  <Link href="http://localhost:3000/login-page" >
+                {"Back to my app"}
+              </Link>
+              </small>
             </Grid>
           </Grid>
-        </form>
+          </CardActions>
+          </CardActionArea>
+        </Card>
       </div>
+      <Backdrop open={open} />
       <Box mt={8}>
         <Copyright />
       </Box>
