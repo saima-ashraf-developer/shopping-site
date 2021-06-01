@@ -283,7 +283,7 @@ const Signuppage=(props)=> {
             <FormControlLabel value="female" control={<Radio />} label="Female" />
             <FormControlLabel value="male" control={<Radio />} label="Male" />
          </RadioGroup>
-          <Button variant='contained'color='primary' size='large' onClick={}>Register</Button>
+          <Button variant='contained'color='primary' size='large'>Register</Button>
        </form>
        </Paper>
      </Grid>
