@@ -87,6 +87,18 @@ export default function Shopping() {
             <TreeItem nodeId="4" label="Webstorm" />
           </TreeItem>
         </TreeView>
+        <TreeView
+          className={classes.root}
+          defaultCollapseIcon={<ExpandMoreIcon />}
+          defaultExpandIcon={<ChevronRightIcon />}
+          multiSelect
+        >
+          <TreeItem nodeId="1" label="categories">
+            <TreeItem nodeId="2" label="item1" />
+            <TreeItem nodeId="3" label="item2" />
+            <TreeItem nodeId="4" label="item3" />
+          </TreeItem>
+        </TreeView>
       </Drawer>
     </div>
   );
