@@ -102,7 +102,7 @@ export default function SearchBar(){
       <CardActions style={{flexGrow: 1, display: 'block'}}>
        
         <Button size="small" variant='outlined' onClick={clickHandler} >{<FavoriteBorderOutlinedIcon />}</Button>
-        <Button size="small" variant='contained' color='primary' >{<BarChartOutlinedIcon />}</Button>
+        <Button size="small" variant='contained' color='primary'>{<BarChartOutlinedIcon />}</Button>
       </CardActions>
     </Card>
     <Modal

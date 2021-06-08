@@ -60,7 +60,41 @@ export default function Layout() {
   };
 
   const open = Boolean(anchorEl);
+  class Parents {
+    constructor(name, address){
+      this.name = name;
+      this.address = address;
+    }
+  }
 
+  class Students extends Parents {
+    constructor(name, marks, rollno, address){
+      super(name, address)
+      this.Marks = marks;
+      this.Rollno = rollno;
+      
+    }
+  }
+  
+  const student = new Students('sam',40, 5, 'st#9 lhr');
+  const parent = new Parents('ashraf', 'str#1, lahore')
+  
+  // console.log(`${Students.name} is son of ${Parents.name} and his age is ${Students.age}, he lives in ${Parents.address}`)
+    console.log(student)
+    console.log(parent)
+
+    var person = {
+      fullName: function(city, country) {
+        return this.firstName + " " + this.lastName + "," + city + "," + country;
+      }
+    }
+    var person1 = {
+      firstName:"John",
+      lastName: "Doe"
+    }
+    const aa = person.fullName.call(person1, "Oslo", "Norway");
+    
+    console.log(aa)
   return (
     <div>
       <AppBar className={classes.appbar}>
@@ -126,4 +160,21 @@ export default function Layout() {
       </div>
     </div>
   );
+
+  // class App extends React.Component {
+    //   constructor() {
+    //     students = {
+    //       name: "",
+    //       class: "",
+    //       rollno: "",
+    //       address: "",
+    //       marks: "",
+    //     };
+    //   }
+    
+    //   render() {
+    //     return <div></div>;
+    //   }
+    // }
+    
 }

@@ -22,6 +22,8 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import {connect} from 'react-redux';
+import Rating from '@material-ui/lab/Rating';
+
 
 
 function Copyright() {
@@ -128,6 +130,8 @@ const footers = [
 
 const Pricing=(props)=> {
   const classes = useStyles();
+  const [value, setValue] = React.useState(2);
+
   const [items, setItems] = useState([
     {
       title: 'Delivery Free',
@@ -223,6 +227,18 @@ const Pricing=(props)=> {
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom id="transition-modal-title">
           Price Of Products 
         </Typography>
+        <div style={{align: 'center'}}>
+      <Box component="fieldset" mb={2} borderColor="transparent">
+        <Typography component="legend">Rating</Typography>
+        <Rating
+          name="simple-controlled"
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        />
+      </Box>
+    </div>
         <div className={classes.root1}>
       <GridList cellHeight={200} spacing={1} className={classes.gridList}>
         {props.tileData.map((tile) => (
