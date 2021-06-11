@@ -297,9 +297,6 @@ const Pricing=(props)=> {
             <Link variant="button" color="textPrimary" href="#" className={classes.link}>
               Enterprise
             </Link>
-            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-              Support
-            </Link>
           </nav>
           <Button href="#" color="inherit" variant="outlined" className={classes.link} onClick={loginHandler}>
             Login
