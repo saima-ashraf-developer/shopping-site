@@ -34,6 +34,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import PDF from './Pdf';
+
 
 
 const drawerWidth = 240;
@@ -432,6 +434,7 @@ const Pricing=(props)=> {
         </List>
       </Drawer>
         </Grid>
+        <PDF />
         <Box mt={5}>
           <Copyright />
         </Box>

@@ -51,7 +51,7 @@ export default function Shopping() {
 
   return (
     <div>
-      {/* <Pdf > */}
+     
       <Drawer className={classes.drawer} variant="permanent" anchor="left">
         <div className={classes.toolbar} />
         <Divider />
@@ -100,7 +100,7 @@ export default function Shopping() {
           </TreeItem>
         </TreeView>
       </Drawer>
-      {/* </Pdf> */}
+     
     </div>
   );
 }

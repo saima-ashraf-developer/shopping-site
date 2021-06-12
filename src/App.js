@@ -10,6 +10,7 @@ import Password from './components/Password';
 import Signuppage from './components/Signuppage';
 
 
+
 function App() {
   const theme = createMuiTheme({
     palette:{
@@ -48,6 +49,7 @@ function App() {
         </Switch>
        
       </Router>
+      
       </ThemeProvider>
      
     </div>
