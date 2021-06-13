@@ -18,7 +18,7 @@ import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
-
+import Pdf from './Pdf';
 
 const drawerWidth = 240;
 
@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Shopping() {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
+  const [loading, setLoading] = useState([1,2,3]);
   const [listItems, setListItems] = useState([
     "Inbox",
     "Starred",
@@ -99,6 +100,8 @@ export default function Shopping() {
             <TreeItem nodeId="2" label="item2" />
           </TreeItem>
         </TreeView>
+        {/* <Pdf 
+        loading={loading}/> */}
       </Drawer>
      
     </div>
